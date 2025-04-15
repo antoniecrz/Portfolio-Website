@@ -1,0 +1,59 @@
+<div class="socialContainer">
+  <h2 style="font-size:{{ section.settings.size }}px;">{{ section.settings.sectionTitle }}</h2>
+  <div class="socialIcons">
+  {% for block in section.blocks %}
+      <div class="socialIcons">
+          <a class="socialButton" href="{{ block.settings.social_url }}">
+            <img src="{{ block.settings.social_image | img_url: 'Master' }}" alt="{{ block.settings.social_image.alt }}" loading="lazy" height="{{ block.settings.social_image.height }}" width="{{ block.settings.social_image.width }}">  
+          </a>
+      </div>
+  {% endfor %}
+  </div>
+</div>
+
+<style>
+.socialContainer{text-align:center;margin:40px 0}.socialContainer h2{margin-bottom:20px}.socialIcons{display:flex;justify-content:center;gap:20px}.socialIcons a img{width:40px;height:40px;transition:transform .3s}
+</style>
+
+{% schema %}
+    {
+        "name": "Social Icons Section",
+        "settings": [
+          {
+            "type": "text",
+            "id": "sectionTitle",
+            "label": "Section Heading",
+            "default": "Follow Us on social media"
+          },
+          {
+            "type": "text",
+            "id": "size",
+            "label": "title size",
+            "default": "16"
+          }
+        ],
+        "blocks": [{
+            "name": "Icons",
+            "type": "Text",
+            "settings": [
+                {
+                    "type": "url",
+                    "id": "social_url",
+                    "label": "Add Your PDF's"
+                },
+                {
+                    "type": "image_picker",
+                    "id": "social_image",
+                    "label": "Add Social Icon"
+                }
+            ]
+        }
+            
+        ],
+    "presets": [
+            {
+                "name": "Add Social Icons"
+            }
+        ]
+    }
+{% endschema %}
